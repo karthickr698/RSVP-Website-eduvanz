@@ -1,9 +1,38 @@
 import {
-    REGISTER_SUCCESS
-} from "../ActionTypes";
+    REGISTER_REQUEST,
+    REGISTER_SUCCESS,
+    REGISTER_FAILURE
+} from '../ActionTypes';
+import axios from 'axios';
 
-export const register_user = () => {
+const requestRegister = () => {
     return {
-        type: REGISTER_SUCCESS
+        type: REGISTER_REQUEST
     };
 };
+
+const registerSuccess = (payload) => {
+    return {
+        type: REGISTER_SUCCESS,
+        payload
+    };
+};
+
+const registerFailure = (error) => {
+    return {
+        type: REGISTER_FAILURE,
+        error
+    };
+};
+
+export const registerUser = payload => dispatch => {
+    dispatch(requestRegister())
+    return axios({
+        method: 'POST',
+        url: 'https://rsvp-website.free.beeceptor.com/my/api/path',
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        data: payload
+    })
+        .then(res => dispatch(registerSuccess(res.data)))
+        .catch(err => dispatch(registerFailure(err)))
+}
