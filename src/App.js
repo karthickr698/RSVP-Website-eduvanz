@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Routing from './Router/Routing'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
-    <div>
-      Header
-    </div>
+    <BrowserRouter>
+      <Routing />
+    </BrowserRouter>
   );
 }
 
