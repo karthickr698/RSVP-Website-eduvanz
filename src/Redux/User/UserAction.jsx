@@ -29,7 +29,7 @@ export const registerUser = payload => dispatch => {
     dispatch(requestRegister())
     return axios({
         method: 'POST',
-        url: 'https://rsvp-website.free.beeceptor.com/my/api/path',
+        url: 'http://localhost:3000/user',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         data: payload
     })

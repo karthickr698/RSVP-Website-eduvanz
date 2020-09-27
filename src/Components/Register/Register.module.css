@@ -1,0 +1,115 @@
+.header{
+  position: absolute;
+  width: 100%;
+  font-size: 190px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: rgb(194, 194, 194);
+  margin-top: -50px;
+  opacity: 0.5;
+  text-align: center;
+  letter-spacing: 0px;
+}
+
+.register{
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register > div {
+  margin: 6px;
+}
+
+.registerCont {
+  width: 380px;
+  height: 600px;
+  margin-top: 13vh !important;
+  background: transparent linear-gradient(42deg, #ff5b5b 0%, #dba3db 100%) 0% 0%
+    no-repeat padding-box;
+  border-radius: 6px;
+  opacity: 1;
+  outline: none;
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.registerLabel {
+  letter-spacing: 0px;
+  text-align: center;
+  color: #FFFFFF;
+  opacity: 0.7;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.registerBtn {
+  border: none;
+  outline: none;
+  background: transparent
+    linear-gradient(83deg, #f0f0f0 0%, #f9f9f9 64%, #ffffff 100%) 0% 0%
+    no-repeat padding-box;
+  border-radius: 6px;
+  box-shadow: 0px 3px 10px #00000026;
+  color: #ef7c96;
+  font-size: 17px;
+  font-weight: 600;
+  width: 150px;
+  height: 35px;
+  margin-top: 20px;
+}
+.registersubCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.inputTag {
+  text-align: center;
+  outline: none;
+  font-size: 19px;
+  width: 350px;
+  height: 35px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #ffffff;
+  border-radius: 6px; 
+  text-align-last: center;
+}
+
+.buttons{
+   display: flex;
+   justify-content: space-around;
+}
+
+@media only screen and (max-width: 600px) {
+  .header{
+    font-size: 80px;
+    margin-top: 20px;
+    margin-top: 0px;
+  }
+  .register{
+    margin: 0 auto 0 auto;
+  }
+  .registerCont {
+    width: 280px;
+    height: 630px;
+    text-align: center;
+    margin-top: 13vh !important;
+  }
+  .inputTag {
+    width: 250px;
+  }
+  .registerBtn {
+    width: 170px;
+    margin: 10px auto 0 auto;
+  }
+  .buttons{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+}

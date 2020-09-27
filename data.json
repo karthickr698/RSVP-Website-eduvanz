@@ -1,0 +1,36 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "dsf",
+      "age": "dsf",
+      "dob": "ds",
+      "profession": "aw",
+      "locality": "",
+      "guests": "",
+      "address": ""
+    },
+    {
+      "id": 2,
+      "name": "214dsf",
+      "age": "dsf",
+      "dob": "ds",
+      "profession": "aw",
+      "locality": "",
+      "guests": "",
+      "address": ""
+    },
+    {
+      "name": "KARTHICK R",
+      "age": "21",
+      "dob": "2020-09-06",
+      "profession": "student",
+      "locality": "hhbghjh",
+      "guests": "1",
+      "address": "nfghdcnfgdxnfg",
+      "address_chars_left": 36,
+      "isCancel": false,
+      "id": 3
+    }
+  ]
+}
