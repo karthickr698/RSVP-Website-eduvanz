@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchUserData } from '../../Redux/admin/AdminAction'
 import AdminTable from './AdminTable'
+import { searchData } from '../../Redux/admin/AdminAction'
+
 
 class Admin extends Component {
     constructor(props) {
@@ -23,6 +25,8 @@ class Admin extends Component {
 
     changeHandler = e => {
         this.setState({ search: e.target.value })
+        this.props.searchData(e.target.value)
+
     };
 
     componentDidMount() {
@@ -87,7 +91,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchUserData: () => dispatch(fetchUserData())
+    fetchUserData: () => dispatch(fetchUserData()),
+    searchData: (payload) => dispatch(searchData(payload))
 })
 
 

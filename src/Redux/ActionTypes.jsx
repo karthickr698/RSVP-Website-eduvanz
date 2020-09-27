@@ -11,3 +11,4 @@ export const REPORT_SUCCESS = 'REPORT_SUCCESS';
 export const REPORT_FAILURE = 'REPORT_FAILURE';
 
 export const FILTER_DATA = 'FILTER_DATA';
+export const SEARCH_DATA = 'SEARCH_DATA';

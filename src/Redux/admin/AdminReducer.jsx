@@ -2,7 +2,8 @@ import {
     FETCH_USER_REQUEST,
     FETCH_USER_SUCCESS,
     FETCH_USER_FAILURE,
-    FILTER_DATA
+    FILTER_DATA,
+    SEARCH_DATA
 
 } from "../ActionTypes";
 
@@ -67,6 +68,21 @@ const adminReducer = (state = initState, action) => {
             return {
                 ...state,
                 user_data: [...bookings],
+            };
+        }
+        case SEARCH_DATA: {
+            let pattern = (action.payload).toLowerCase();
+            console.log(pattern)
+            let filterArr = state.copyOfData.filter((ele) =>
+                ele.name.toLowerCase().includes(pattern) || ele.locality.toLowerCase().includes(pattern)
+            );
+            if (pattern === "") {
+                filterArr = state.copyOfData;
+            }
+            console.log(filterArr)
+            return {
+                ...state,
+                user_data: [...filterArr],
             };
         }
         default:
