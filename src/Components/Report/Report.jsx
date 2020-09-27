@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { getAllReports } from "../../Redux/ReportData/ReportAction";
 import { Pie, Bar } from "react-chartjs-2";
 
+import styles from "./Report.module.css";
+
 const pieChartDataAgeGroup = {
   labels: ["13-18", "19-25", "above 25"],
   datasets: [
@@ -92,63 +94,76 @@ class Report extends Component {
     barChartDataGuestGroup.datasets[0].label = `Average group size of people attending the event ${avgGuestCount}`;
     return (
       <React.Fragment>
-        <Pie
-          data={pieChartDataAgeGroup}
-          options={{
-            title: {
-              display: true,
-              text:
-                "Number of people in a given age range (13-18, 19-25 and 25+)",
-              fontSize: 20,
-            },
-            legend: {
-              display: true,
-              position: "right",
-            },
-          }}
-        />
-        <Pie
-          data={pieChartDataProfGroup}
-          options={{
-            title: {
-              display: true,
-              text: "Professionals & students count",
-              fontSize: 20,
-            },
-            legend: {
-              display: true,
-              position: "right",
-            },
-          }}
-        />
-        <Bar
-          data={barChartDataLocalityGroup}
-          options={{
-            title: {
-              display: true,
-              text: "Number of people by localities",
-              fontSize: 20,
-            },
-            legend: {
-              display: true,
-              position: "right",
-            },
-          }}
-        />
-        <Bar
-          data={barChartDataGuestGroup}
-          options={{
-            title: {
-              display: true,
-              text: "Number of guests",
-              fontSize: 20,
-            },
-            legend: {
-              display: true,
-              position: "right",
-            },
-          }}
-        />
+        <h4>Click on the Chart Label to filter</h4>
+        <div className={styles.pieChartCont}>
+          <div className={styles.pieChartHolder}>
+            <Pie
+              data={pieChartDataAgeGroup}
+              options={{
+                title: {
+                  display: true,
+                  text:
+                    "Number of people in a given age range (13-18, 19-25 and 25+)",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+            />
+          </div>
+          <div className={styles.pieChartHolder}>
+            <Pie
+              data={pieChartDataProfGroup}
+              options={{
+                title: {
+                  display: true,
+                  text: "Professionals & students count",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+            />
+          </div>
+        </div>
+        <div className={styles.barChartCont}>
+          <div className={styles.barChartHolder}>
+            <Bar
+              data={barChartDataLocalityGroup}
+              options={{
+                title: {
+                  display: true,
+                  text: "Number of people by localities",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "bottom",
+                },
+              }}
+            />
+          </div>
+          <div className={styles.barChartHolder}>
+            <Bar
+              data={barChartDataGuestGroup}
+              options={{
+                title: {
+                  display: true,
+                  text: "Number of guests",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "bottom",
+                },
+              }}
+            />
+          </div>
+        </div>
       </React.Fragment>
     );
   }

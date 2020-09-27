@@ -1,0 +1,34 @@
+.pieChartCont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.pieChartHolder {
+  margin-top: 20px;
+  width: 45%;
+}
+
+.barChartCont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.barChartHolder {
+  margin-top: 50px;
+  width: 95%;
+}
+
+@media only screen and (max-width: 800px) {
+  .pieChartCont {
+    flex-direction: column;
+  }
+
+  .pieChartHolder {
+    width: 95%;
+  }
+}
