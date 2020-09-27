@@ -8,6 +8,8 @@ const initState = {
   count13_to_18: 0,
   count19_to_25: 0,
   countAb25: 0,
+  studentCount: 0,
+  employeeCount: 0,
 };
 
 const reportReducer = (state = initState, action) => {
@@ -24,15 +26,22 @@ const reportReducer = (state = initState, action) => {
       const { payload = [] } = action;
       let count13 = 0,
         count18 = 0,
-        count25 = 0;
+        count25 = 0,
+        employeeCount = 0,
+        studentCount = 0;
       payload.forEach((user) => {
-        const { age } = user;
+        const { age, profession } = user;
         if (age >= 13 && age <= 18) {
           count13++;
         } else if (age >= 19 && age <= 25) {
           count18++;
         } else {
           count25++;
+        }
+        if (profession === "employled") {
+          employeeCount++;
+        } else {
+          studentCount++;
         }
       });
       return {
@@ -42,6 +51,8 @@ const reportReducer = (state = initState, action) => {
         count13_to_18: count13,
         count19_to_25: count18,
         countAb25: count25,
+        studentCount: employeeCount,
+        employeeCount: studentCount,
       };
     case REPORT_FAILURE:
       return {
