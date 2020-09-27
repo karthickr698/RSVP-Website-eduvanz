@@ -8,9 +8,6 @@ export default class Home extends Component {
             <div className=" p-3">
                 <h2 className="text-center display-5">RSVP Meetup</h2>
                 <ul className="nav">
-                    {/* <li className="image img-fluid">
-                        <img height="100px" className="nav-img" src={logos} alt="." />
-                    </li> */}
                     <li
                         onClick={this.change}
                         name="home"
@@ -42,7 +39,7 @@ export default class Home extends Component {
                                 className="btn btn-dark"
                                 style={{ marginTop: "30px" }}
                             >
-                                Log Out
+                                Register
                         </button>
                         </Link>
                     </li>

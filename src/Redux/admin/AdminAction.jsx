@@ -31,7 +31,7 @@ export const fetchUserData = () => dispatch => {
     dispatch(fetchUserDataRequest())
     return axios({
         method: 'GET',
-        url: 'http://localhost:3000/user',
+        url: 'https://rsvp-data.herokuapp.com/user',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
         .then(res => dispatch(fetchUserDataSuccess(res.data)))

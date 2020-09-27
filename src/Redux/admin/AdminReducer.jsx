@@ -37,7 +37,6 @@ const adminReducer = (state = initState, action) => {
             };
         case FILTER_DATA: {
             let target = action.payload;
-            console.log(target)
             let bookings = [];
             if (target === "Show All") {
                 bookings = state.copyOfData;
@@ -51,19 +50,16 @@ const adminReducer = (state = initState, action) => {
                 bookings = state.copyOfData.sort((a, b) => {
                     return a.name === b.name ? 0 : a.name > b.name ? -1 : 1;
                 });
-                console.log(bookings)
             }
             else if (target === "Sort Locality A-Z") {
                 bookings = state.copyOfData.sort((a, b) => {
                     return a.locality === b.locality ? 0 : a.locality < b.locality ? -1 : 1;
                 });
-                console.log(bookings)
             }
             else {
                 bookings = state.copyOfData.sort((a, b) => {
                     return a.locality === b.locality ? 0 : a.locality > b.locality ? -1 : 1;
                 });
-                console.log(bookings)
             }
             return {
                 ...state,
@@ -72,14 +68,12 @@ const adminReducer = (state = initState, action) => {
         }
         case SEARCH_DATA: {
             let pattern = (action.payload).toLowerCase();
-            console.log(pattern)
             let filterArr = state.copyOfData.filter((ele) =>
                 ele.name.toLowerCase().includes(pattern) || ele.locality.toLowerCase().includes(pattern)
             );
             if (pattern === "") {
                 filterArr = state.copyOfData;
             }
-            console.log(filterArr)
             return {
                 ...state,
                 user_data: [...filterArr],

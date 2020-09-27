@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
 import Home from "../Components/Home/Home";
 import Register from "../Components/Register/Register";
 import Report from "../Components/Report/Report";
 
-class Routing extends Component {
+export default class Routing extends Component {
     render() {
         return (
             <>
@@ -19,9 +18,3 @@ class Routing extends Component {
         );
     }
 }
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = (dispatch) => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Routing);

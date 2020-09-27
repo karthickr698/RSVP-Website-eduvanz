@@ -1,9 +1,7 @@
 import React from "react";
-import styles from './admin.module.css'
-import { Button } from '@material-ui/core'
 
-export default function Pagination({ paginate, curr_page, changePage, changePageData }) {
-    console.log(paginate)
+export default function Pagination(props) {
+    const { paginate, curr_page, changePage, changePageData } = props
     return (
         <div>
             <ul className="pagination pagination-lg justify-content-center" data-aos="fade-up-right" data-aos-offset="140" data-aos-delay="100" data-aos-duration="200" data-aos-easing="ease-in-out" data-aos-once="true">
@@ -28,7 +26,7 @@ export default function Pagination({ paginate, curr_page, changePage, changePage
                 }
                 <div className="font-weight-bold pt-2 pl-4 pr-4" style={{ fontSize: "20px" }}>{curr_page} of {paginate.length}</div>
                 {
-                    (paginate.length - curr_page) == 0 ?
+                    (paginate.length - curr_page) === 0 ?
                         <button className="btn btn-dark btn-lg pl-5 pr-5"
                             onClick={() => {
                                 return changePage(curr_page + 1);

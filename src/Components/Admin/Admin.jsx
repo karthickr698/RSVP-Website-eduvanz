@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { fetchUserData } from '../../Redux/admin/AdminAction'
 import AdminTable from './AdminTable'
 import { searchData } from '../../Redux/admin/AdminAction'
-
+import IsLoader from '../Home/IsLoader'
 
 class Admin extends Component {
     constructor(props) {
@@ -39,9 +39,7 @@ class Admin extends Component {
         let indexCurrData = pageNo * noOfData
         if (isloading) {
             return (
-                <div>
-                    Loading...
-                </div>
+                <IsLoader />
             )
         }
         else if (isError) {

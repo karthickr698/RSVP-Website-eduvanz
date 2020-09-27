@@ -10,7 +10,6 @@ function AdminTable(props) {
     const [modal_data, setModalData] = useState([])
     let paginate = [];
     let j = 1;
-    console.log(data)
 
     if (data.length > paginate.length) {
         for (let i = 0; i < totalData.length; i += Number(num)) {
@@ -24,7 +23,6 @@ function AdminTable(props) {
     };
 
     const handleModal = (id) => {
-        console.log(id)
         let user_datas = data.filter(ele => ele.id === id)
         setModalData(user_datas)
     }
@@ -72,9 +70,8 @@ function AdminTable(props) {
     );
 }
 
-const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
     filter: item => dispatch(filterData(item))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminTable);
+export default connect(null, mapDispatchToProps)(AdminTable);

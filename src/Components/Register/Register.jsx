@@ -4,6 +4,7 @@ import { registerUser } from '../../Redux/User/UserAction'
 import { Redirect } from 'react-router-dom'
 import styles from './Register.module.css';
 import swal from 'sweetalert'
+import IsLoader from "../Home/IsLoader";
 
 class Register extends Component {
     constructor(props) {
@@ -51,14 +52,14 @@ class Register extends Component {
     handleSubmit = () => {
         const { name, age, dob, profession, locality, guests, address } = this.state
         if (name.length === 0 || age.length === 0 || dob.length === 0 || profession.length === 0 || locality.length === 0 || guests.length === 0 || address.length === 0) {
-            this.props.registerUser(this.state)
-        }
-        else {
             swal({
                 text: "All fields are required",
                 icon: "warning",
-                button: "Aww yiss!",
+                button: "Ok",
             });
+        }
+        else {
+            this.props.registerUser(this.state)
         }
 
     }
@@ -67,9 +68,7 @@ class Register extends Component {
         const { isSignUp, isSignUpErrorMessage, isSignUpSuccess } = this.props
         if (isSignUp) {
             return (
-                <div>
-                    Loading...
-                </div>
+                <IsLoader />
             )
         }
         else if (this.state.isCancel || isSignUpSuccess) {
