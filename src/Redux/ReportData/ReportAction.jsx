@@ -25,7 +25,7 @@ export const getAllReports = () => (dispatch) => {
   dispatch(requestReport());
   return axios({
     method: "GET",
-    url: "http://localhost:3000/reportData",
+    url: "http://localhost:3000/user",
     headers: { "Content-Type": "application/json;charset=utf-8" },
   })
     .then((res) => dispatch(ReportSuccess(res.data)))
