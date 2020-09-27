@@ -40,6 +40,19 @@ const barChartDataLocalityGroup = {
   ],
 };
 
+const barChartDataGuestGroup = {
+  labels: ["0 - Guests", "1 - Guests", "2 - Guests"],
+  datasets: [
+    {
+      label: "Guest Group",
+      backgroundColor: "rgba(75,192,192,1)",
+      borderColor: "rgba(0,0,0,1)",
+      borderWidth: 2,
+      data: [],
+    },
+  ],
+};
+
 class Report extends Component {
   constructor(props) {
     super(props);
@@ -58,6 +71,10 @@ class Report extends Component {
       studentCount,
       employeeCount,
       localities,
+      guest0Count,
+      guest1Count,
+      guest2Count,
+      avgGuestCount,
     } = this.props;
     pieChartDataAgeGroup.datasets[0].data = [
       count13_to_18,
@@ -66,8 +83,13 @@ class Report extends Component {
     ];
     barChartDataLocalityGroup.labels = Object.keys(localities);
     barChartDataLocalityGroup.datasets[0].data = Object.values(localities);
-    console.log(localities);
     pieChartDataProfGroup.datasets[0].data = [studentCount, employeeCount];
+    barChartDataGuestGroup.datasets[0].data = [
+      guest0Count,
+      guest1Count,
+      guest2Count,
+    ];
+    barChartDataGuestGroup.datasets[0].label = `Average group size of people attending the event ${avgGuestCount}`;
     return (
       <React.Fragment>
         <Pie
@@ -113,6 +135,20 @@ class Report extends Component {
             },
           }}
         />
+        <Bar
+          data={barChartDataGuestGroup}
+          options={{
+            title: {
+              display: true,
+              text: "Number of guests",
+              fontSize: 20,
+            },
+            legend: {
+              display: true,
+              position: "right",
+            },
+          }}
+        />
       </React.Fragment>
     );
   }
@@ -129,6 +165,10 @@ const mapStateToProps = (state) => ({
   studentCount: state.report.studentCount,
   employeeCount: state.report.employeeCount,
   localities: state.report.localities,
+  guest0Count: state.report.guest0Count,
+  guest1Count: state.report.guest1Count,
+  guest2Count: state.report.guest2Count,
+  avgGuestCount: state.report.avgGuestCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
