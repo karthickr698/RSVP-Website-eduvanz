@@ -9,9 +9,6 @@ class Admin extends Component {
         this.state = {
             pageNo: 1,
             noOfData: 6,
-            indexPrevData: Math.floor((this.state.pageNo - 1) * this.state.noOfData),
-            indexCurrData: this.state.pageNo * this.state.noOfData,
-            dataToShow: this.props.user_data.slice(this.state.indexPrevData, this.state.indexCurrData),
             search: ""
         }
     }
@@ -33,7 +30,9 @@ class Admin extends Component {
     }
     render() {
         const { isloading, isError, user_data } = this.props
-        const { dataToShow, noOfData, pageNo, search } = this.state
+        const { noOfData, pageNo, search } = this.state
+        let indexPrevData = Math.floor((pageNo - 1) * noOfData)
+        let indexCurrData = pageNo * noOfData
         if (isloading) {
             return (
                 <div>
@@ -48,32 +47,35 @@ class Admin extends Component {
                 </div>
             )
         }
-        return (
-            <div >
-                <div data-aos="fade-up-right" data-aos-offset="140" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-once="false" >
-                    <div className="col-md-5 m-auto p-4">
-                        <input
-                            style={{ textAlign: "center" }}
-                            className="form-control"
-                            placeholder="search Restaurants "
-                            value={search}
-                            onChange={this.changeHandler}
-                        />
-                    </div>
-                    <div className="col-md-10 m-auto p-4">
-                        <h2 className="text-center pb-3">All Restaurants</h2>
-                        <AdminTable
-                            data={dataToShow}
-                            totalData={user_data}
-                            changePage={this.changePage}
-                            num={noOfData}
-                            changePageData={this.changePageData}
-                            curr_page={pageNo}
-                        />
+        else {
+
+            return (
+                <div >
+                    <div data-aos="fade-up-right" data-aos-offset="140" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" data-aos-once="false" >
+                        <div className="col-md-5 m-auto p-4">
+                            <input
+                                style={{ textAlign: "center" }}
+                                className="form-control"
+                                placeholder="search user by name or locality "
+                                value={search}
+                                onChange={this.changeHandler}
+                            />
+                        </div>
+                        <div className="col-md-10 m-auto p-4">
+                            <h2 className="text-center pb-3">All Users</h2>
+                            <AdminTable
+                                data={user_data.slice(indexPrevData, indexCurrData)}
+                                totalData={user_data}
+                                changePage={this.changePage}
+                                num={noOfData}
+                                changePageData={this.changePageData}
+                                curr_page={pageNo}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 }
 

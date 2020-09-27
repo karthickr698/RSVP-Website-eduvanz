@@ -1,7 +1,8 @@
 import {
     FETCH_USER_REQUEST,
     FETCH_USER_SUCCESS,
-    FETCH_USER_FAILURE
+    FETCH_USER_FAILURE,
+    FILTER_DATA
 } from '../ActionTypes';
 import axios from 'axios';
 
@@ -35,3 +36,10 @@ export const fetchUserData = () => dispatch => {
         .then(res => dispatch(fetchUserDataSuccess(res.data)))
         .catch(err => dispatch(fetchUserDataFailure(err)))
 }
+
+export const filterData = (item) => {
+    return {
+        type: FILTER_DATA,
+        payload: item,
+    };
+};
