@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import userReducer from './User/UserReducer'
+import userReducer from "./User/UserReducer";
+import reportReducer from "./ReportData/ReportReducer";
 
 export const rootReducer = combineReducers({
-    user: userReducer
+  user: userReducer,
+  report: reportReducer,
 });
