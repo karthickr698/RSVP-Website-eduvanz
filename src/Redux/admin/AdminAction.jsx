@@ -25,13 +25,12 @@ const fetchUserDataFailure = (error) => {
     };
 };
 
-export const fetchUserData = payload => dispatch => {
+export const fetchUserData = () => dispatch => {
     dispatch(fetchUserDataRequest())
     return axios({
-        method: 'POST',
+        method: 'GET',
         url: 'http://localhost:3000/user',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
-        data: payload
     })
         .then(res => dispatch(fetchUserDataSuccess(res.data)))
         .catch(err => dispatch(fetchUserDataFailure(err)))
