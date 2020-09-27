@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { registerUser } from '../../Redux/User/UserAction'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import styles from './Register.module.css';
 import swal from 'sweetalert'
 class Register extends Component {
