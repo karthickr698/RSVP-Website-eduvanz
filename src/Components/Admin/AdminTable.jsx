@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { filterData } from "../../Redux/admin/AdminAction";
 import Filter from './Filter'
@@ -7,6 +7,7 @@ import UserModal from './UserModal'
 
 function AdminTable(props) {
     const { data, totalData, changePage, changePageData, filter, num, curr_page } = props
+    const [modal_data, setModalData] = useState([])
     let paginate = [];
     let j = 1;
     console.log(data)
@@ -21,6 +22,12 @@ function AdminTable(props) {
     const changeHandler = e => {
         filter(e.target.value);
     };
+
+    const handleModal = (id) => {
+        console.log(id)
+        let user_datas = data.filter(ele => ele.id === id)
+        setModalData(user_datas)
+    }
     return (
         <div>
             <Filter changeHandler={changeHandler} />
@@ -43,6 +50,7 @@ function AdminTable(props) {
                                         className="text-success btn btn-outline-light mx-auto d-block"
                                         data-toggle="modal"
                                         data-target="#exampleModal"
+                                        onClick={() => { handleModal(ele.id) }}
                                     >
                                         View Details
                                     </button>
@@ -52,7 +60,7 @@ function AdminTable(props) {
                     );
                 })}
             </div>
-            <UserModal id="exampleModal" />
+            <UserModal id="exampleModal" Datas={modal_data} />
             <hr />
             <Pagination
                 paginate={paginate}
