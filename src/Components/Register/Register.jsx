@@ -28,33 +28,43 @@ class Register extends Component {
     }
 
     handleCancel = () => {
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to save the data",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Poof! Your imaginary file has been deleted!", {
-                        icon: "success",
-                    });
-                    this.setState({ isCancel: true })
-                }
-            });
+        const { name, age, dob, profession, locality, guests, address } = this.state
+        if (name.length === 0 && age.length === 0 && dob.length === 0 && profession.length === 0 && locality.length === 0 && guests.length === 0 && address.length === 0) {
+            this.setState({ isCancel: true })
+        }
+        else {
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to save the data",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        this.setState({ isCancel: true })
+                    }
+                });
+        }
     }
 
     handleSubmit = () => {
-        console.log(this.state)
-        this.props.registerUser(this.state)
+        const { name, age, dob, profession, locality, guests, address } = this.state
+        if (name.length === 0 || age.length === 0 || dob.length === 0 || profession.length === 0 || locality.length === 0 || guests.length === 0 || address.length === 0) {
+            this.props.registerUser(this.state)
+        }
+        else {
+            swal({
+                text: "All fields are required",
+                icon: "warning",
+                button: "Aww yiss!",
+            });
+        }
 
     }
 
     render() {
-        const { isSignUp, isSignUpErrorMessage, user_data } = this.props
-        console.log(user_data)
-        console.log(this.state)
+        const { isSignUp, isSignUpErrorMessage, isSignUpSuccess } = this.props
         if (isSignUp) {
             return (
                 <div>
@@ -62,7 +72,7 @@ class Register extends Component {
                 </div>
             )
         }
-        else if (this.state.isCancel || user_data.length > 0) {
+        else if (this.state.isCancel || isSignUpSuccess) {
             return (
                 <Redirect to='/' />
             )
@@ -160,7 +170,7 @@ class Register extends Component {
 const mapStateToProps = state => ({
     isSignUp: state.user.isSignUp,
     isSignUpErrorMessage: state.user.isSignUpErrorMessage,
-    user_data: state.user.user_data
+    isSignUpSuccess: state.user.isSignUpSuccess
 })
 
 const mapDispatchToProps = dispatch => ({

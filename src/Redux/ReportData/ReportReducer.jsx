@@ -78,7 +78,7 @@ const reportReducer = (state = initState, action) => {
         guest0Count: guest0Count,
         guest1Count: guest1Count,
         guest2Count: guest2Count,
-        avgGuestCount: totalGuests / usersCount,
+        avgGuestCount: (totalGuests / usersCount).toFixed(2),
         localities: localities,
       };
     case REPORT_FAILURE:

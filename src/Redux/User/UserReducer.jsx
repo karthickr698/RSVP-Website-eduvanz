@@ -7,7 +7,7 @@ import {
 
 const initState = {
     isSignUp: false,
-    user_data: [],
+    isSignUpSuccess: false,
     isSignUpErrorMessage: ""
 };
 
@@ -29,7 +29,7 @@ const userReducer = (state = initState, action) => {
             return {
                 ...state,
                 isSignUp: false,
-                user_data: action.payload
+                isSignUpSuccess: true
             };
         default:
             return state;

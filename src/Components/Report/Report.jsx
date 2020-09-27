@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom'
 import { getAllReports } from "../../Redux/ReportData/ReportAction";
 import { Pie, Bar } from "react-chartjs-2";
 
@@ -11,7 +12,6 @@ const pieChartDataAgeGroup = {
     {
       label: "Age Group",
       backgroundColor: ["#2FDE00", "#00A6B4", "#6800B4"],
-      //hoverBackgroundColor: ["#501800", "#4B5000", "#35014F"],
       data: [0, 0, 0],
     },
   ],
@@ -22,8 +22,7 @@ const pieChartDataProfGroup = {
   datasets: [
     {
       label: "Profession Group",
-      backgroundColor: ["#2FDE00", "#00A6B4"],
-      //hoverBackgroundColor: ["#501800", "#4B5000"],
+      backgroundColor: ["#f6546a", "#a96e71"],
       data: [0, 0],
     },
   ],
@@ -34,7 +33,7 @@ const barChartDataLocalityGroup = {
   datasets: [
     {
       label: "Locality Group",
-      backgroundColor: "rgba(75,192,192,1)",
+      backgroundColor: "#d6893a",
       borderColor: "rgba(0,0,0,1)",
       borderWidth: 2,
       data: [],
@@ -47,7 +46,7 @@ const barChartDataGuestGroup = {
   datasets: [
     {
       label: "Guest Group",
-      backgroundColor: "rgba(75,192,192,1)",
+      backgroundColor: "#2bfe72",
       borderColor: "rgba(0,0,0,1)",
       borderWidth: 2,
       data: [],
@@ -91,10 +90,15 @@ class Report extends Component {
       guest1Count,
       guest2Count,
     ];
-    barChartDataGuestGroup.datasets[0].label = `Average group size of people attending the event ${avgGuestCount}`;
+    barChartDataGuestGroup.datasets[0].label = `Average group size of people attending the event ${avgGuestCount}%`;
     return (
       <React.Fragment>
-        <h4>Click on the Chart Label to filter</h4>
+        <div className="text-center" >
+          <Link to="/">
+            <button className="btn btn-lg btn-secondary font-weight-bold" style={{ width: "400px" }}>Go To Home</button>
+          </Link>
+        </div>
+        <h6 className="text-center">(Click on the Chart Label to filter)</h6>
         <div className={styles.pieChartCont}>
           <div className={styles.pieChartHolder}>
             <Pie
