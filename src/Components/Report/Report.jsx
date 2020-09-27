@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAllReports } from "../../Redux/ReportData/ReportAction";
-import { Pie } from "react-chartjs-2";
+import { Pie, Bar } from "react-chartjs-2";
 
 const pieChartDataAgeGroup = {
   labels: ["13-18", "19-25", "above 25"],
@@ -27,6 +27,19 @@ const pieChartDataProfGroup = {
   ],
 };
 
+const barChartDataLocalityGroup = {
+  labels: [],
+  datasets: [
+    {
+      label: "Locality Group",
+      backgroundColor: "rgba(75,192,192,1)",
+      borderColor: "rgba(0,0,0,1)",
+      borderWidth: 2,
+      data: [],
+    },
+  ],
+};
+
 class Report extends Component {
   constructor(props) {
     super(props);
@@ -44,12 +57,16 @@ class Report extends Component {
       countAb25,
       studentCount,
       employeeCount,
+      localities,
     } = this.props;
     pieChartDataAgeGroup.datasets[0].data = [
       count13_to_18,
       count19_to_25,
       countAb25,
     ];
+    barChartDataLocalityGroup.labels = Object.keys(localities);
+    barChartDataLocalityGroup.datasets[0].data = Object.values(localities);
+    console.log(localities);
     pieChartDataProfGroup.datasets[0].data = [studentCount, employeeCount];
     return (
       <React.Fragment>
@@ -82,6 +99,20 @@ class Report extends Component {
             },
           }}
         />
+        <Bar
+          data={barChartDataLocalityGroup}
+          options={{
+            title: {
+              display: true,
+              text: "Number of people by localities",
+              fontSize: 20,
+            },
+            legend: {
+              display: true,
+              position: "right",
+            },
+          }}
+        />
       </React.Fragment>
     );
   }
@@ -97,6 +128,7 @@ const mapStateToProps = (state) => ({
   countAb25: state.report.countAb25,
   studentCount: state.report.studentCount,
   employeeCount: state.report.employeeCount,
+  localities: state.report.localities,
 });
 
 const mapDispatchToProps = (dispatch) => ({
