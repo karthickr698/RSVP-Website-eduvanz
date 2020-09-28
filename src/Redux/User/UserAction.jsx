@@ -29,7 +29,8 @@ export const registerUser = payload => dispatch => {
     dispatch(requestRegister())
     return axios({
         method: 'POST',
-        url: 'http://localhost:3000/user',
+        url: 'https://rsvp-data.herokuapp.com/user', 
+
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         data: payload
     })
